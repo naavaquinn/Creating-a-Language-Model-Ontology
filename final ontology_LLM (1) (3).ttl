@@ -1,0 +1,1065 @@
+@prefix : <http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/> .
+
+<http://example.org/LLM-ontology> rdf:type owl:Ontology ;
+                                   rdfs:comment "This ontology gives a general oerview of what LLMs are and some information related to LLMs"@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/LLM-ontology#anLLM
+:anLLM rdf:type owl:ObjectProperty ;
+       rdfs:domain :LLM ;
+       rdfs:comment "A named LLM"@en ;
+       rdfs:label "anLLM"@en .
+
+
+###  http://example.org/LLM-ontology#hasMitigation
+:hasMitigation rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasComputationResource ;
+               rdfs:domain :Computational_resources ;
+               rdfs:range [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasMitigation ;
+                            owl:someValuesFrom :Mitigation_strategies_for_computationl_resources
+                          ] ;
+               rdfs:comment "Strategies used to reduce computer resources used by LLMs"@en ;
+               rdfs:label "hasMitigation"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/deployedIn
+:deployedIn rdf:type owl:ObjectProperty ;
+            rdfs:domain :LLM ;
+            rdfs:range [ rdf:type owl:Restriction ;
+                         owl:onProperty :deployedIn ;
+                         owl:someValuesFrom :Deployment_Method
+                       ] ;
+            rdfs:label "deployedIn"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/hasApplication
+:hasApplication rdf:type owl:ObjectProperty ;
+                rdfs:domain :LLM ;
+                rdfs:range [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasApplication ;
+                             owl:someValuesFrom :Application_Domain
+                           ] ;
+                rdfs:label "hasApplication"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/hasArchitecture
+:hasArchitecture rdf:type owl:ObjectProperty ;
+                 rdfs:domain :LLM ;
+                 rdfs:range [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasArchitecture ;
+                              owl:someValuesFrom :Architecture
+                            ] ;
+                 rdfs:comment "Relates an LLM to its underlying architecture"@en ;
+                 rdfs:label "hasArchitecture"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/hasChallenge
+:hasChallenge rdf:type owl:ObjectProperty ;
+              rdfs:domain :LLM ;
+              rdfs:range :Challenges ;
+              rdfs:comment "Challenges associated with developping an LLM"@en ;
+              rdfs:label "hasChallenge"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/hasComputationResource
+:hasComputationResource rdf:type owl:ObjectProperty ;
+                        rdfs:domain :Training ;
+                        rdfs:range [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasComputationResource ;
+                                     owl:someValuesFrom :Computational_resources
+                                   ] ;
+                        rdfs:comment "Computational resources used for training an LLM"@en ;
+                        rdfs:label "hasComputationResource"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/hasEvaluationMetric
+:hasEvaluationMetric rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Training ;
+                     rdfs:range [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasEvaluationMetric ;
+                                  owl:someValuesFrom :Evaluation_Metric
+                                ] ;
+                     rdfs:comment "Relates an LLM to the metrics associated with it"@en ;
+                     rdfs:label "hasEvaluationMetric"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/hasParameters
+:hasParameters rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isTrainedWith ;
+               rdfs:domain :Training ;
+               rdfs:range [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasParameters ;
+                            owl:someValuesFrom :Parameters
+                          ] ;
+               rdfs:comment "Parameters used in training an LLM"@en ;
+               rdfs:label "hasParameters"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/hasTrainingData
+:hasTrainingData rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Training ;
+                 rdfs:range [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTrainingData ;
+                              owl:someValuesFrom :Training_Data
+                            ] ;
+                 rdfs:comment "Relates an LLM to the data it was trained on"@en ;
+                 rdfs:label "hasTrainingData"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/isTrainedWith
+:isTrainedWith rdf:type owl:ObjectProperty ;
+               rdfs:range :Training ;
+               rdfs:comment "Relates an LLM to its training method"@en ;
+               rdfs:label "isTrainedWith"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/performsTask
+:performsTask rdf:type owl:ObjectProperty ;
+              rdfs:domain :LLM ;
+              rdfs:range :LLM_Tasks ;
+              rdfs:comment "Task performed by LLMs"@en ;
+              rdfs:label "performsTask"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/trainingTime
+:trainingTime rdf:type owl:ObjectProperty ;
+              rdfs:domain [ rdf:type owl:Restriction ;
+                            owl:onProperty :trainingTime ;
+                            owl:someValuesFrom :Training_time
+                          ] ;
+              rdfs:range [ rdf:type owl:Restriction ;
+                           owl:onProperty :trainingTime ;
+                           owl:someValuesFrom :Training_time
+                         ] ;
+              rdfs:comment "Time used to train an LLM"@en ;
+              rdfs:label "trainingTime"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/usesOptimizer
+:usesOptimizer rdf:type owl:ObjectProperty ;
+               rdfs:domain :Training ;
+               rdfs:range :Optimization_Algorithm ;
+               rdfs:comment "Optimization algorithm used during training"@en ;
+               rdfs:label "usesOptimizer"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/usesRegularization
+:usesRegularization rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Training ;
+                    rdfs:range :Regularization_Technique ;
+                    rdfs:comment "Regularization technique used during training"@en ;
+                    rdfs:label "usesRegularization"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/LLM-ontology#DeployedOn
+:DeployedOn rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Deployment_Method ;
+            rdfs:range xsd:string .
+
+
+###  http://example.org/LLM-ontology#hasData
+:hasData rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Training_Data ;
+         rdfs:range xsd:string ;
+         rdfs:comment "The corpus used to train an LLM"@en ;
+         rdfs:label "hasData"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/CorpusSize
+:CorpusSize rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Training_Data ;
+            rdfs:range xsd:decimal ;
+            rdfs:comment "The size of the training corpus"@en ;
+            rdfs:label "CorpusSize"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/ExApplication
+:ExApplication rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Application_Domain ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Specifies an example application of LLM"@en ;
+               rdfs:label "ExApplication"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/LearningRate
+:LearningRate rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Parameters ;
+              rdfs:range xsd:float ;
+              rdfs:comment "Specifies the learning rate used during training."@en ;
+              rdfs:label "LearningRate"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/LossFunction
+:LossFunction rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Parameters ;
+              rdfs:comment "Specifies the loss function used during training"@en ;
+              rdfs:label "LossFunction"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/ParameterCount
+:ParameterCount rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Parameters ;
+                rdfs:range xsd:string ;
+                rdfs:comment "Specifies the number of parameters in an LLM."@en ;
+                rdfs:label "ParameterCount"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/PerformTask
+:PerformTask rdf:type owl:DatatypeProperty ;
+             rdfs:domain :LLM_Tasks ;
+             rdfs:range xsd:string ;
+             rdfs:comment "PerformTask"@en ,
+                          "Specifies the task performed by an LLM"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/PerformanceScore
+:PerformanceScore rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Performance_Metrics ;
+                  rdfs:range xsd:string ;
+                  rdfs:comment "Specifies the performance score of an LLM on a specific metric"@en ;
+                  rdfs:label "PerformanceScore"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/TrainingDuration
+:TrainingDuration rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Training ;
+                  rdfs:range xsd:string ;
+                  rdfs:comment "Specifies the duration of the training process"@en ;
+                  rdfs:label "TrainingDuration"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/numProcessor
+:numProcessor rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Hardware ;
+              rdfs:range xsd:string ;
+              rdfs:comment "Specifies the number of processors used"@en ;
+              rdfs:label "numProcessor"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/LLM-ontology#LLM
+:LLM rdf:type owl:Class ;
+     rdfs:comment "A Large Language Model"@en ;
+     rdfs:label "LLM"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Accountability
+:Accountability rdf:type owl:Class ;
+                rdfs:subClassOf :Ethical_Concern ;
+                rdfs:comment "The ethical concern regarding who is responsible for decisions or outputs produced by LLMs"@en ;
+                rdfs:label "Accountability"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Application_Domain
+:Application_Domain rdf:type owl:Class ;
+                    rdfs:comment "Specific areas or fields in which LLMs can be applied." ;
+                    rdfs:label "Application_Domain" .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Architecture
+:Architecture rdf:type owl:Class ;
+              rdfs:comment "The Architecture class represents the structural design or framework used in LLMs."@en ;
+              rdfs:label "Architectures"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Bias_Challenge
+:Bias_Challenge rdf:type owl:Class ;
+                rdfs:subClassOf :Ethical_Concern ;
+                rdfs:comment "It refers to the presence and propagation of stereotypes, prejudices, and biases in the text generated by or used to train these models"@en ;
+                rdfs:label "Bias_Challenge"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/CPU
+:CPU rdf:type owl:Class ;
+     rdfs:subClassOf :Hardware ;
+     rdfs:comment "Central Processing Unit, represents the core processing unit of a computer, responsible for executing instructions from programs."@en ;
+     rdfs:label "CPU"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Challenges
+:Challenges rdf:type owl:Class ;
+            rdfs:comment "This refers to challenges faced when building LLM."@en ;
+            rdfs:label "Challenges"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Cloud_Deployment
+:Cloud_Deployment rdf:type owl:Class ;
+                  rdfs:subClassOf :Deployment_Method ;
+                  rdfs:comment "Utilizing cloud platforms to deploy LLMs, offering scalability and flexibility"@en ;
+                  rdfs:label "Cloud_Deployment"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Code_repository
+:Code_repository rdf:type owl:Class ;
+                 rdfs:subClassOf :Training_Data ;
+                 rdfs:comment "Data gotten from code repositories."@en ;
+                 rdfs:label "Code_repository"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Computational_resources
+:Computational_resources rdf:type owl:Class ;
+                         rdfs:comment "The demands placed on hardwares and infrastructure necessary to train, finetune and deploy LLMs"@en ;
+                         rdfs:label "Computational_Resources" .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Convolution_networks
+:Convolution_networks rdf:type owl:Class ;
+                      rdfs:subClassOf :Architecture ;
+                      rdfs:comment "Convolutional Neural Networks, although primarily used for vision, have been used in some text-based tasks for capturing local patterns in language"@en ;
+                      rdfs:label "Convolutional_networks"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Data_Privacy
+:Data_Privacy rdf:type owl:Class ;
+              rdfs:subClassOf :Ethical_Concern ;
+              rdfs:comment "Ensuring privacy is challenging due to the vast amount of data used for training these models, which may include sensitive or personally identifiable information"@en ;
+              rdfs:label "Data_Privacy"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Data_preprocessing
+:Data_preprocessing rdf:type owl:Class ;
+                    rdfs:subClassOf :Training ;
+                    rdfs:comment "Techniques and methods to clean, transform and structure data into a suitable format for further processing."@en ;
+                    rdfs:label "Data_preprocessing"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Decoder_only
+:Decoder_only rdf:type owl:Class ;
+              rdfs:subClassOf :Transformer_based ;
+              rdfs:comment "A transformer with only the decoder layer"@en ;
+              rdfs:label "Decoder_only"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Deployment_Method
+:Deployment_Method rdf:type owl:Class ;
+                   rdfs:comment "Various strategies and techniques used to deploy LLMs into production environment"@en ;
+                   rdfs:label "Deployment_Method"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Electricity_Usage
+:Electricity_Usage rdf:type owl:Class ;
+                   rdfs:subClassOf :Energy_Consumption ;
+                   rdfs:comment "The amount of electricity used to train an LLM"@en ;
+                   rdfs:label "Electrcity_Usage"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Encoder-decoder
+:Encoder-decoder rdf:type owl:Class ;
+                 rdfs:subClassOf :Transformer_based ;
+                 rdfs:comment "A transformer with both the encoder and decoder layers."@en ;
+                 rdfs:label "Encoder-deocoder"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Encoder-only
+:Encoder-only rdf:type owl:Class ;
+              rdfs:subClassOf :Transformer_based ;
+              rdfs:comment "Transformer with only the encoder layer."@en ;
+              rdfs:label "Encoder-only"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Energy_Consumption
+:Energy_Consumption rdf:type owl:Class ;
+                    rdfs:subClassOf :Challenges ,
+                                    :Computational_resources ;
+                    rdfs:comment "It refers to the energy requirements associated with training and deploying LLMs. LLMs require enormous amounts of processing power and energy, which raises concerns about sustainability, carbon footprint, and the equitable access to such resources."@en ;
+                    rdfs:label "Energy_consumption"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Environmental_Impact
+:Environmental_Impact rdf:type owl:Class ;
+                      rdfs:subClassOf :Challenges ;
+                      rdfs:comment "It refers to the substantial environmental footprint associated with the computational resources needed to train and deploy these models"@en ;
+                      rdfs:label "Environmental_Impact"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Ethical_Concern
+:Ethical_Concern rdf:type owl:Class ;
+                 rdfs:subClassOf :Challenges ;
+                 rdfs:comment "This class represents specific instances of ethical concerns associated with LLMs."@en ;
+                 rdfs:label "Ethical_Concern"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Evaluation_Metric
+:Evaluation_Metric rdf:type owl:Class ;
+                   rdfs:comment "Measures used to assess the performance of LLMs"@en ;
+                   rdfs:label "Evaluation_Metric"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Fine-tuning
+:Fine-tuning rdf:type owl:Class ;
+             rdfs:subClassOf :Training ;
+             rdfs:comment "It involves taking a pre-trained model and making small adjustments to its parameters on a specific dataset to improve its performance on a particular task."@en ;
+             rdfs:label "Fine-tuning"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/GPU
+:GPU rdf:type owl:Class ;
+     rdfs:subClassOf :Hardware ;
+     rdfs:comment "Graphical Processing Unit, specialized hardware for deep learning." ;
+     rdfs:label "GPU"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Generalization_Challenge
+:Generalization_Challenge rdf:type owl:Class ;
+                          rdfs:subClassOf :Challenges ;
+                          rdfs:comment "The difficulties that LLMs face in effectively generalizing their learned knowledge to new, unseen data or contexts that differ from the data they were trained on."@en ;
+                          rdfs:label "Generalization_challenge"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Hardware
+:Hardware rdf:type owl:Class ;
+          rdfs:subClassOf :Computational_resources ;
+          rdfs:comment "Represents the hardware used for training LLMs."@en ;
+          rdfs:label "Hardware"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Human_Evaluation
+:Human_Evaluation rdf:type owl:Class ;
+                  rdfs:subClassOf :Evaluation_Metric ;
+                  rdfs:comment "This assessing the outputs of language models based on subjective criteria determined by human judges."@en ;
+                  rdfs:label "Human_Evaluation"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Hybrid_models
+:Hybrid_models rdf:type owl:Class ;
+               rdfs:subClassOf :Architecture ;
+               rdfs:comment "Hybrid models combine architectures such as RNNs with attention mechanisms or CNN-RNN hybrids, enhancing their capabilities for language tasks" ;
+               rdfs:label "Hybrid_models"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Instruction_Tuning
+:Instruction_Tuning rdf:type owl:Class ;
+                    rdfs:subClassOf :Training ;
+                    rdfs:comment "A technique of adapting language models to better understand and follow human instructions."@en ;
+                    rdfs:label "Instruction_Tuning"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Interpretability
+:Interpretability rdf:type owl:Class ;
+                  rdfs:subClassOf :Challenges ;
+                  rdfs:comment "The difficulty of understanding and explaining how LLMs make their predictions or decisions." ;
+                  rdfs:label "Interpretability"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/LLM_Tasks
+:LLM_Tasks rdf:type owl:Class ;
+           rdfs:comment "Funstionalities that LLM can perform"@en ;
+           rdfs:label "LLM_Tasks"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Mitigation_strategies_for_computationl_resources
+:Mitigation_strategies_for_computationl_resources rdf:type owl:Class ;
+                                                  rdfs:subClassOf :Computational_resources ;
+                                                  rdfs:comment "Strategies and techniques aimed at optimizing the use of computational resources to reduce costs, energy consumption, and improve efficiency during the training and deployment of LLMs"@en ;
+                                                  rdfs:label "Mitigation_strategies_for_computationl_resources"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Multimodal_Data
+:Multimodal_Data rdf:type owl:Class ;
+                 rdfs:subClassOf :Training_Data ;
+                 rdfs:comment "A mixtures of several kind of data ie text, speech, code etc"@en ;
+                 rdfs:label "Multimodal_Data"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/On-Premises_Deployment
+:On-Premises_Deployment rdf:type owl:Class ;
+                        rdfs:subClassOf :Deployment_Method ;
+                        rdfs:comment "Deploying LLMs on local servers within an organization's infrastructure."@en ;
+                        rdfs:label "On_Premises_Deployment"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Optimization_Algorithm
+:Optimization_Algorithm rdf:type owl:Class ;
+                        rdfs:subClassOf :Training ;
+                        rdfs:comment "Algorithms used to adjust model parameters to minimize the loss function during training." ;
+                        rdfs:label "Optimization_Algorithm"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Parameters
+:Parameters rdf:type owl:Class ;
+            rdfs:subClassOf :Training ;
+            rdfs:comment "Internal variables of a model that are learned from training data."@en ;
+            rdfs:label "Parameters"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Performance_Metrics
+:Performance_Metrics rdf:type owl:Class ;
+                     rdfs:subClassOf :Evaluation_Metric ;
+                     rdfs:comment "Quantitative measures used to evaluate the effectiveness of LLMs."@en ;
+                     rdfs:label "Performance_Metrics"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Recurrent_networks
+:Recurrent_networks rdf:type owl:Class ;
+                    rdfs:subClassOf :Architecture ;
+                    rdfs:comment "Recurrent Neural Networks were commonly used in the early days of LLMs. They process sequences one element at a time."@en ;
+                    rdfs:label "Recurrent_networks"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Regularization_Technique
+:Regularization_Technique rdf:type owl:Class ;
+                          rdfs:subClassOf :Training ;
+                          rdfs:comment "Techniques to prevent overfitting during optimization."@en ;
+                          rdfs:label "Regularization_Techniques"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Scaling_Challenge
+:Scaling_Challenge rdf:type owl:Class ;
+                   rdfs:subClassOf :Challenges ;
+                   rdfs:comment "refers to the difficulties associated with expanding the size, complexity, or capabilities of LLMs."@en ;
+                   rdfs:label "Scaling_Challenge"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Speech_Data
+:Speech_Data rdf:type owl:Class ;
+             rdfs:subClassOf :Training_Data ;
+             rdfs:comment "Speech data used to train LLMs."@en ;
+             rdfs:label "Speech_Data"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Supervised_Learning
+:Supervised_Learning rdf:type owl:Class ;
+                     rdfs:subClassOf :Training ;
+                     rdfs:comment "A type of machine learning where models are trained on labeled data to make predictions."@en ;
+                     rdfs:label "Supervised_Learning"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/TPU
+:TPU rdf:type owl:Class ;
+     rdfs:subClassOf :Hardware ;
+     rdfs:comment "Tensor Processing Units, specialized hardware for deep learning" ;
+     rdfs:label "TPU"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Textual_Data
+:Textual_Data rdf:type owl:Class ;
+              rdfs:subClassOf :Training_Data ;
+              rdfs:comment "Textual data used to train LLMs."@en ;
+              rdfs:label "Text_data"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Training
+:Training rdf:type owl:Class ;
+          rdfs:comment "This class represent the types of training techniques which can be used to train LLMs and also training parameters"@en ;
+          rdfs:label "Training"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Training_Data
+:Training_Data rdf:type owl:Class ;
+               rdfs:comment "Data used to train the LLM"@en ;
+               rdfs:label "Training_Data"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Training_time
+:Training_time rdf:type owl:Class ;
+               rdfs:subClassOf :Energy_Consumption ;
+               rdfs:comment "The time used to train a LLM"@en ;
+               rdfs:label "Training_time"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Transfer_Learning
+:Transfer_Learning rdf:type owl:Class ;
+                   rdfs:subClassOf :Training ;
+                   rdfs:comment "Applying knowledge from pre-trained models to improve understanding of instructions"@en ;
+                   rdfs:label "Transfer_Learning"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Transformer_based
+:Transformer_based rdf:type owl:Class ;
+                   rdfs:subClassOf :Architecture ;
+                   rdfs:comment "Transformer models rely on self-attention mechanisms for processing entire sequences in parallel, widely used in modern LLMs."@en ;
+                   rdfs:label "Transformer_based"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Unsupervised_Learning
+:Unsupervised_Learning rdf:type owl:Class ;
+                       rdfs:subClassOf :Training ;
+                       rdfs:comment "A type of machine learning where models are trained on unlabeled data to find patterns."@en ;
+                       rdfs:label "Unsupervised_Learning"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.org/LLM-ontology#Carbon_footprint
+:Carbon_footprint rdf:type owl:NamedIndividual ,
+                           :Environmental_Impact ;
+                  rdfs:comment "CO2 emissions from training, deploying, and maintaining the infrastructure"@en ;
+                  rdfs:label "Carbon_footprint"@en .
+
+
+###  http://example.org/LLM-ontology#Data_Center
+:Data_Center rdf:type owl:NamedIndividual ,
+                      :On-Premises_Deployment ;
+             rdfs:comment "A centralized physical facility used to house computer systems and associated components, such as storage and telecommunications systems, to store and process data."@en ;
+             rdfs:label "Data_Center"@en .
+
+
+###  http://example.org/LLM-ontology#Feature_Attribution_Certainty
+:Feature_Attribution_Certainty rdf:type owl:NamedIndividual ,
+                                        :Interpretability ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasChallenge ;
+                                          owl:someValuesFrom :Interpretability
+                                        ] ;
+                               rdfs:comment "Uncertainty in understanding which features contribute most to a model's predictions."@en ;
+                               rdfs:label "Feature _Attribution _Uncertainty"@en .
+
+
+###  http://example.org/LLM-ontology#Google_cloud_platform
+:Google_cloud_platform rdf:type owl:NamedIndividual ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :deployedIn ;
+                                  owl:someValuesFrom :Cloud_Deployment
+                                ] ;
+                       rdfs:comment "A cloud service where models can be hosted"@en ;
+                       rdfs:label "Google_cloud_platform"@en .
+
+
+###  http://example.org/LLM-ontology#Microsoft_Azure
+:Microsoft_Azure rdf:type owl:NamedIndividual ,
+                          :Cloud_Deployment ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :deployedIn ;
+                            owl:someValuesFrom :Cloud_Deployment
+                          ] .
+
+
+###  http://example.org/LLM-ontology#Organization
+:Organization rdf:type owl:NamedIndividual ,
+                       :Accountability ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasChallenge ;
+                         owl:someValuesFrom :Accountability
+                       ] .
+
+
+###  http://example.org/LLM-ontology#Overfitting
+:Overfitting rdf:type owl:NamedIndividual ,
+                      :Generalization_Challenge ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasChallenge ;
+                        owl:someValuesFrom :Generalization_Challenge
+                      ] ;
+             rdfs:comment "The model memorizes the training data instead of learning general patterns, leading to poor performance on unseen data"@en ;
+             rdfs:label "Overfitting"@en .
+
+
+###  http://example.org/LLM-ontology#Quantization
+:Quantization rdf:type owl:NamedIndividual ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasMitigation ;
+                         owl:someValuesFrom :Mitigation_strategies_for_computationl_resources
+                       ] ;
+              rdfs:comment "Represent weights with lower bit precision, shrinking model size and memory footprint."@en ;
+              rdfs:label "Quantization"@en .
+
+
+###  http://example.org/LLM-ontology#Racial_bias
+:Racial_bias rdf:type owl:NamedIndividual ,
+                      :Bias_Challenge ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasChallenge ;
+                        owl:someValuesFrom :Bias_Challenge
+                      ] .
+
+
+###  http://example.org/LLM-ontology#Tokenization
+:Tokenization rdf:type owl:NamedIndividual ,
+                       :Data_preprocessing ;
+              rdfs:comment "Splitting text into smaller words called tokens"@en ;
+              rdfs:label "Tokenization"@en .
+
+
+###  http://example.org/LLM-ontology#User_Privacy
+:User_Privacy rdf:type owl:NamedIndividual ,
+                       :Data_Privacy ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasChallenge ;
+                         owl:someValuesFrom :Data_Privacy
+                       ] ;
+              rdfs:comment "Challenge faced with protecting users'  data privacy"@en ;
+              rdfs:label "User_Privacy"@en .
+
+
+###  http://example.org/LLM-ontology#A/B_Testing
+<http://example.org/LLM-ontology#A/B_Testing> rdf:type owl:NamedIndividual ,
+                                                       :Human_Evaluation ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :hasEvaluationMetric ;
+                                                         owl:someValuesFrom :Human_Evaluation
+                                                       ] ;
+                                              rdfs:comment "A/B testing can be used to evaluate different model configurations, features, or user interfaces by measuring user engagement, satisfaction, and performance metrics. This approach helps optimize models and user experiences based on empirical data."@en ;
+                                              rdfs:label "A/B_Testing"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/AWS
+:AWS rdf:type owl:NamedIndividual ,
+              :Cloud_Deployment ,
+              [ rdf:type owl:Restriction ;
+                owl:onProperty :deployedIn ;
+                owl:someValuesFrom :Cloud_Deployment
+              ] ;
+     rdfs:comment "A cloud platform where models can be deployed"@en ;
+     rdfs:label "AWS"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Accuracy
+:Accuracy rdf:type owl:NamedIndividual ,
+                   [ rdf:type owl:Restriction ;
+                     owl:onProperty :hasEvaluationMetric ;
+                     owl:someValuesFrom :Performance_Metrics
+                   ] ;
+          rdfs:comment "It measures how often the model's predictions match the actual outcomes"@en ;
+          rdfs:label "Accuracy"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Adam_Optimizer
+:Adam_Optimizer rdf:type owl:NamedIndividual ,
+                         :Optimization_Algorithm ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :usesOptimizer ;
+                           owl:someValuesFrom :Optimization_Algorithm
+                         ] ;
+                rdfs:comment "An optimization algorithm that combines momentum and adaptive learning rates."@en ;
+                rdfs:label "Adam_Optimizer"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/BERT
+:BERT rdf:type owl:NamedIndividual ,
+               :LLM ,
+               :Encoder-only ,
+               [ rdf:type owl:Restriction ;
+                 owl:onProperty :anLLM ;
+                 owl:someValuesFrom :LLM
+               ] ,
+               [ rdf:type owl:Restriction ;
+                 owl:onProperty :hasArchitecture ;
+                 owl:someValuesFrom :Encoder-only
+               ] ,
+               [ rdf:type owl:Restriction ;
+                 owl:onProperty :hasTrainingData ;
+                 owl:someValuesFrom :Textual_Data
+               ] ,
+               [ rdf:type owl:Restriction ;
+                 owl:onProperty :isTrainedWith ;
+                 owl:someValuesFrom :Unsupervised_Learning
+               ] ;
+      :hasData "Common crawl and English Wikipedia" ;
+      :ParameterCount "110M" ;
+      :PerformTask """Toxic comment classfication
+Clinical Notes analysis""" ;
+      :PerformanceScore "F1: 93.16 %" ;
+      :TrainingDuration "4 days" ;
+      :numProcessor "4 TPUs" ;
+      rdfs:comment "An encoder-only LLM"@en ;
+      rdfs:label "BERT"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/BLEU_score
+:BLEU_score rdf:type owl:NamedIndividual ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasEvaluationMetric ;
+                       owl:someValuesFrom :Performance_Metrics
+                     ] ;
+            rdfs:comment "The BLEU (Bilingual Evaluation Understudy) score is a metric for evaluating the quality of text generated by machine translation systems and other natural language processing applications. It compares a machine-generated translation to one or more human-generated reference translations, measuring the overlap of n-grams (sequences of n words) between them"@en ;
+            rdfs:label "BLUE_score"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Bias
+:Bias rdf:type owl:NamedIndividual ,
+               [ rdf:type owl:Restriction ;
+                 owl:onProperty :hasParameters ;
+                 owl:someValuesFrom :Parameters
+               ] ;
+      rdfs:comment "Additional parameters that help shift the activation function for better fitting."@en ;
+      rdfs:label "Bias"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/BookCorpus
+:BookCorpus rdf:type owl:NamedIndividual ,
+                     :Textual_Data ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasTrainingData ;
+                       owl:someValuesFrom :Textual_Data
+                     ] ;
+            :CorpusSize 11038 ;
+            rdfs:label "BookCorpus"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Common_Crawl
+:Common_Crawl rdf:type owl:NamedIndividual ,
+                       :Textual_Data ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTrainingData ;
+                         owl:someValuesFrom :Textual_Data
+                       ] ;
+              :CorpusSize 100000000000000 ;
+              rdfs:comment "The Common Crawl corpus contains petabytes of data collected over 12 years of web crawling."@en ;
+              rdfs:label "Common_Crawl"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Data_privacy_violation
+:Data_privacy_violation rdf:type owl:NamedIndividual ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasChallenge ;
+                                   owl:someValuesFrom :Ethical_Concern
+                                 ] ;
+                        rdfs:comment "Protection of personal and sensitive information from unauthorized access, use, or disclosure. It involves ensuring that individuals have control over their data and that their privacy rights are upheld in accordance with regulations and ethical standards"@en ;
+                        rdfs:label "Data_privacy"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Dropout_Regularization
+:Dropout_Regularization rdf:type owl:NamedIndividual ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :usesRegularization ;
+                                   owl:someValuesFrom :Regularization_Technique
+                                 ] ;
+                        rdfs:comment "It helps improve model generalization by ensuring that the network does not rely too heavily on specific paths in the architecture, thus enhancing its performance on unseen data."@en ;
+                        rdfs:label "Dropout_Regularization"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Education
+:Education rdf:type owl:NamedIndividual ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty :hasApplication ;
+                      owl:someValuesFrom :Application_Domain
+                    ] ;
+           :ExApplication "Automatic grading system" ,
+                          "Intelligent tutoring systems" ;
+           rdfs:comment "A domain where LLMs can be applied to."@en ;
+           rdfs:label "Education"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/GPT-4
+:GPT-4 rdf:type owl:NamedIndividual ,
+                :LLM ,
+                :Decoder_only ,
+                :Unsupervised_Learning ,
+                [ rdf:type owl:Restriction ;
+                  owl:onProperty :anLLM ;
+                  owl:someValuesFrom :LLM
+                ] ,
+                [ rdf:type owl:Restriction ;
+                  owl:onProperty :hasArchitecture ;
+                  owl:someValuesFrom :Decoder_only
+                ] ,
+                [ rdf:type owl:Restriction ;
+                  owl:onProperty :hasTrainingData ;
+                  owl:someValuesFrom :Multimodal_Data
+                ] ,
+                [ rdf:type owl:Restriction ;
+                  owl:onProperty :isTrainedWith ;
+                  owl:someValuesFrom :Unsupervised_Learning
+                ] ;
+       :DeployedOn "Microsoft Azure" ;
+       :ParameterCount "1 trillion" ;
+       :PerformTask "Text generation" ;
+       rdfs:comment "A decoder-only model"@en ;
+       rdfs:label "GPT-4"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Health
+:Health rdf:type owl:NamedIndividual ,
+                 [ rdf:type owl:Restriction ;
+                   owl:onProperty :hasApplication ;
+                   owl:someValuesFrom :Application_Domain
+                 ] ;
+        :ExApplication "Medical report generation" ;
+        rdfs:comment "An application of LLMs"@en ;
+        rdfs:label "Health"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Intel
+:Intel rdf:type owl:NamedIndividual ,
+                :CPU ,
+                [ rdf:type owl:Restriction ;
+                  owl:onProperty :hasComputationResource ;
+                  owl:someValuesFrom :CPU
+                ] ;
+       rdfs:comment "A brand of CPU"@en ;
+       rdfs:label "Intel"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/L2_Regularization
+:L2_Regularization rdf:type owl:NamedIndividual ,
+                            :Optimization_Algorithm ,
+                            :Regularization_Technique ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :usesRegularization ;
+                              owl:someValuesFrom :Regularization_Technique
+                            ] ;
+                   rdfs:comment "A technique to prevent overfitting during optimization"@en ;
+                   rdfs:label "L2_Regularization"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/LSTM
+:LSTM rdf:type owl:NamedIndividual ,
+               :Recurrent_networks ,
+               [ rdf:type owl:Restriction ;
+                 owl:onProperty :hasArchitecture ;
+                 owl:someValuesFrom :Recurrent_networks
+               ] ;
+      rdfs:comment "An RNN model"@en ;
+      rdfs:label "LSTM"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/LibriMix
+:LibriMix rdf:type owl:NamedIndividual ,
+                   :Speech_Data ,
+                   [ rdf:type owl:Restriction ;
+                     owl:onProperty :hasTrainingData ;
+                     owl:someValuesFrom :Speech_Data
+                   ] ;
+          rdfs:comment "An open source dataset for source separation in noisy environments"@en ;
+          rdfs:label "LibriMix"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Manipulation_of_public_opinion
+:Manipulation_of_public_opinion rdf:type owl:NamedIndividual ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :hasChallenge ;
+                                           owl:someValuesFrom :Ethical_Concern
+                                         ] ;
+                                rdfs:comment "It ethical concerns regarding the potential misuse of technology to propagate biased or misleading information, impacting democratic processes and societal norms."@en ;
+                                rdfs:label "Manipulation_of_public_opinion"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Model_pruning
+:Model_pruning rdf:type owl:NamedIndividual ,
+                        :Mitigation_strategies_for_computationl_resources ;
+               rdfs:comment "A tecnique used to reduce the size and complexity of a machine learning model by removing less important parameters, neurons, or connections"@en ;
+               rdfs:label "Model_pruning"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Nvidia_GPU
+:Nvidia_GPU rdf:type owl:NamedIndividual ,
+                     :GPU ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasComputationResource ;
+                       owl:someValuesFrom :GPU
+                     ] ;
+            rdfs:comment "A brand of GPU"@en ;
+            rdfs:label "Nvidia_GPU"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Perplexity
+:Perplexity rdf:type owl:NamedIndividual ,
+                     :Performance_Metrics ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasEvaluationMetric ;
+                       owl:someValuesFrom :Performance_Metrics
+                     ] ;
+            rdfs:comment "It is a measure of how well a language model predicts a sample"@en ;
+            rdfs:label "Perplexity"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Question_Answering
+:Question_Answering rdf:type owl:NamedIndividual ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :performsTask ;
+                               owl:someValuesFrom :LLM_Tasks
+                             ] ;
+                    rdfs:comment "An example of a task performed by an LLM or a task on which an LLM can be trained on."@en ;
+                    rdfs:label "Question_answering"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Sentiment_analysis
+:Sentiment_analysis rdf:type owl:NamedIndividual ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :performsTask ;
+                               owl:someValuesFrom :LLM_Tasks
+                             ] ;
+                    rdfs:comment "An example of a task performed by an LLM or a task on which an LLM can be trained on."@en ;
+                    rdfs:label "Sentiment_analysis"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Stochastic_Gradient_Descent
+:Stochastic_Gradient_Descent rdf:type owl:NamedIndividual ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :usesOptimizer ;
+                                        owl:someValuesFrom :Optimization_Algorithm
+                                      ] ;
+                             rdfs:comment "It is an algorithm used to optimize machine learning models."@en ;
+                             rdfs:label "Stochastic_Gradient_Descent"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/T5
+:T5 rdf:type owl:NamedIndividual ,
+             :LLM ,
+             :Encoder-decoder ,
+             [ rdf:type owl:Restriction ;
+               owl:onProperty :anLLM ;
+               owl:someValuesFrom :LLM
+             ] ,
+             [ rdf:type owl:Restriction ;
+               owl:onProperty :hasArchitecture ;
+               owl:someValuesFrom :Encoder-decoder
+             ] ,
+             [ rdf:type owl:Restriction ;
+               owl:onProperty :isTrainedWith ;
+               owl:someValuesFrom :Unsupervised_Learning
+             ] ;
+    :DeployedOn "Google_cloud_platform" ;
+    :LossFunction "Cross Entropy"@en ;
+    :ParameterCount """small: 60M
+base:  220M
+large: 770M""" ;
+    :PerformTask """Classification
+Summarization""" ;
+    rdfs:comment "An encoder-decoder LLM"@en ;
+    rdfs:label "T5"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/TPU_v2
+:TPU_v2 rdf:type owl:NamedIndividual ,
+                 :TPU ,
+                 [ rdf:type owl:Restriction ;
+                   owl:onProperty :hasComputationResource ;
+                   owl:someValuesFrom :TPU
+                 ] ;
+        rdfs:comment "a specialized hardware accelerator developed by Google for machine learning workloads"@en ;
+        rdfs:label "TPU_v2"@en .
+
+
+###  http://www.semanticweb.org/awarkeh/ontologies/2024/8/untitled-ontology-3/Weights
+:Weights rdf:type owl:NamedIndividual ,
+                  [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasParameters ;
+                    owl:someValuesFrom :Parameters
+                  ] ;
+         rdfs:comment "Values that represent the strength of connections between neurons in neural networks"@en ;
+         rdfs:label "Weights"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Decoder_only
+                :Encoder-decoder
+                :Encoder-only
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
