@@ -1,4 +1,4 @@
-# Large Language Model (LLM) Ontology
+# Large Language Models (LLMs) Ontology
 
 ## Introduction
 The LLM Ontology offers a structured framework for understanding key aspects of large language models, supporting researchers, students, and newcomers. Covering architecture, performance metrics, and applications, this ontology provides a foundational understanding of LLMs and serves as a basis for future developments.
